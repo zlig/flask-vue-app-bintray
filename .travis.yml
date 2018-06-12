@@ -20,6 +20,9 @@ before_install:
   - export BUILD_DATE=$(date "+%Y%m%d")
   - export PACKAGE_NAME_VERSION=$PACKAGE_NAME-$BUILD_VERSION.deb
 
+install:
+  - npm install vue
+
 script:
   # Replace version and build number with the Debian control file
   - sed -i "s/__PACKAGE_NAME__/$PACKAGE_NAME/g" $PACKAGE_NAME/DEBIAN/control
