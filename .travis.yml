@@ -29,6 +29,9 @@ script:
   - sed -i "s/__VERSION__/$BUILD_VERSION/g" $PACKAGE_NAME/DEBIAN/control
   - sed -i "s/__USER__/$BINTRAY_USER/g" $PACKAGE_NAME/DEBIAN/control
   - sed -i "s/__DATE__/$BUILD_DATE/g" $PACKAGE_NAME/DEBIAN/control
+  # Build Vue package
+  - npm vue init webpack
+  - npm run build
   # Create the Debian package
   - dpkg-deb --build $PACKAGE_NAME
   - mv $PACKAGE_NAME.deb $PACKAGE_NAME_VERSION
