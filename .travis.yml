@@ -43,8 +43,8 @@ script:
   - find $PACKAGE_VERSION -type f -exec sed -i "s/__PACKAGE_NAME__/$PACKAGE_NAME/g" {} \;
   - find $PACKAGE_VERSION -type f -exec sed -i "s/__PACKAGE_DESC__/$PACKAGE_DESC/g" {} \;
   # Build Vue package
-  - npm vue init webpack
   - npm run build
+  - npm run dist
   # Create the Debian package
   - dpkg-deb --build $PACKAGE_NAME
   - mv $PACKAGE_NAME.deb $PACKAGE_NAME_VERSION
