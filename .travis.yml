@@ -12,23 +12,36 @@ env:
   - PACKAGE_NAME=flask-vue-app-bintray
   - BINTRAY_REPO_NAME=debian
   - BINTRAY_LICENSE=LGPL-2.1
+  - PACKAGE_DESC="Build a Python Flask web application combined with Vue.js in a Debian .deb package using Travis and upload to Bintray"
+  - BINTRAY_DESCRIPTOR=bintray-descriptor.json.in
 
 before_install:
   # Export variables containing versions and filename
   - export RELEASE_VERSION=$(cat VERSION)
   - export BUILD_VERSION=$RELEASE_VERSION.$TRAVIS_BUILD_NUMBER
   - export BUILD_DATE=$(date "+%Y%m%d")
-  - export PACKAGE_NAME_VERSION=$PACKAGE_NAME-$BUILD_VERSION.deb
+  - export PACKAGE_VERSION=$PACKAGE_NAME-$BUILD_VERSION
+  - export PACKAGE_VERSION_DEB=$PACKAGE_VERSION.deb
 
 install:
   - npm install vue
 
 script:
+  # Create the package direectories structure
+  - mkdir $PACKAGE_VERSION
+  - cp -p -r sources/* $PACKAGE_VERSION
+  - cp -p -r DEBIAN/ $PACKAGE_VERSION
+  - chown root:www-data $PACKAGE_VERSION/*
   # Replace version and build number with the Debian control file
   - sed -i "s/__PACKAGE_NAME__/$PACKAGE_NAME/g" $PACKAGE_NAME/DEBIAN/control
+  - sed -i "s/__PACKAGE_DESC__/$PACKAGE_DESC/g" $PACKAGE_VERSION/DEBIAN/control
   - sed -i "s/__VERSION__/$BUILD_VERSION/g" $PACKAGE_NAME/DEBIAN/control
   - sed -i "s/__USER__/$BINTRAY_USER/g" $PACKAGE_NAME/DEBIAN/control
   - sed -i "s/__DATE__/$BUILD_DATE/g" $PACKAGE_NAME/DEBIAN/control
+  # Replace Web App Files
+  - find $PACKAGE_VERSION -type f -exec sed -i "s/__GA_UA_ID__/$GA_UA_ID/g" {} \;
+  - find $PACKAGE_VERSION -type f -exec sed -i "s/__PACKAGE_NAME__/$PACKAGE_NAME/g" {} \;
+  - find $PACKAGE_VERSION -type f -exec sed -i "s/__PACKAGE_DESC__/$PACKAGE_DESC/g" {} \;
   # Build Vue package
   - npm vue init webpack
   - npm run build
@@ -37,6 +50,9 @@ script:
   - mv $PACKAGE_NAME.deb $PACKAGE_NAME_VERSION
 
 after_success:
+  # Stores hashes of created package to ensure upload successful
+  - export LOCAL_SHA256=$( sha256sum $PACKAGE_VERSION_DEB | cut -d " " -f1 )
+  - 'echo "LOCAL_SHA256=$LOCAL_SHA256"'
   # Output detail on the resulting package for debugging purpose
   - ls -l $PACKAGE_NAME_VERSION
   - dpkg --contents $PACKAGE_NAME_VERSION
