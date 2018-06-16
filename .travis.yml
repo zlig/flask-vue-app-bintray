@@ -29,12 +29,16 @@ install:
   - npm install vue
 
 script:
+  # Build Vue package
+  - mkdir webapp && cd webapp
+  - npm install -g @vue/cli
+  - vue create $PACKAGE_NAME 
+  - cd ..
   # Create the package direectories structure
   - mkdir $PACKAGE_VERSION
   - rsync -a --chown=root:www-data sources/ $PACKAGE_VERSION/
   - rsync -a -R --chown=root:www-data DEBIAN/ $PACKAGE_VERSION/
-  - ls -lsth $PACKAGE_VERSION/
-  - ls -lsthR $PACKAGE_VERSION/
+  - rsync -a -R --chown=root:www-data webapp/ $PACKAGE_VERSION/
   # Replace version and build number with the Debian control file
   - sed -i "s/__PACKAGE_NAME__/$PACKAGE_NAME/g" $PACKAGE_VERSION/DEBIAN/control
   - sed -i "s/__PACKAGE_DESC__/$PACKAGE_DESC/g" $PACKAGE_VERSION/DEBIAN/control
@@ -45,9 +49,6 @@ script:
   - find $PACKAGE_VERSION -type f -exec sed -i "s/__GA_UA_ID__/$GA_UA_ID/g" {} \;
   - find $PACKAGE_VERSION -type f -exec sed -i "s/__PACKAGE_NAME__/$PACKAGE_NAME/g" {} \;
   - find $PACKAGE_VERSION -type f -exec sed -i "s/__PACKAGE_DESC__/$PACKAGE_DESC/g" {} \;
-  # Build Vue package
-  - npm run build
-  - npm run dist
   # Create the Debian package
   - dpkg-deb --build $PACKAGE_NAME
   - mv $PACKAGE_NAME.deb $PACKAGE_NAME_VERSION
