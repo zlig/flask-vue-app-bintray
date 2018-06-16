@@ -32,7 +32,6 @@ script:
   # Build Vue package
   - cd webapp
   - npm install -g vue-cli@2.9.6
-  - npm install
   - cd ..
   # Create the package direectories structure
   - mkdir $PACKAGE_VERSION
