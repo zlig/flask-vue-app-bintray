@@ -33,7 +33,7 @@ script:
   - cd webapp
   - npm install -g vue-cli@2.9.6
   - npm install
-  - npm run build
+  - cd ..
   # Create the package direectories structure
   - mkdir $PACKAGE_VERSION
   - rsync -a --chown=root:www-data sources/ $PACKAGE_VERSION/
