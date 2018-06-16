@@ -32,7 +32,7 @@ script:
   # Create the package direectories structure
   - mkdir $PACKAGE_VERSION
   - rsync -a --chown=root:www-data sources/ $PACKAGE_VERSION/
-  - rsync -a --chown=root:www-data DEBIAN/ $PACKAGE_VERSION/
+  - rsync -a -R --chown=root:www-data DEBIAN/ $PACKAGE_VERSION/
   - ls -lsth $PACKAGE_VERSION/
   - ls -lsthR $PACKAGE_VERSION/
   # Replace version and build number with the Debian control file
