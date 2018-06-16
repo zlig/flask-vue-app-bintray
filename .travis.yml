@@ -30,10 +30,10 @@ install:
 
 script:
   # Build Vue package
-  - mkdir webapp && cd webapp
-  - npm install -g @vue/cli
-  - vue create $PACKAGE_NAME 
-  - cd ..
+  - cd webapp
+  - npm install -g vue-cli@2.9.6
+  - npm install
+  - npm run build
   # Create the package direectories structure
   - mkdir $PACKAGE_VERSION
   - rsync -a --chown=root:www-data sources/ $PACKAGE_VERSION/
