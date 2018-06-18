@@ -1,6 +1,6 @@
 # flask-vue-app-bintray
 
-> __DESK__
+> A Vue.js project
 
 ## Build Setup
 
