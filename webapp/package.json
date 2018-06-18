@@ -2,7 +2,7 @@
   "name": "__PACKAGE_NAME__",
   "version": "__VERSION__",
   "description": "__DESK__",
-  "author": "__AUTHOR__",
+  "author": "__USER__",
   "private": true,
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
