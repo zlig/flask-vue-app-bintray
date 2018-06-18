@@ -33,6 +33,20 @@ install:
   - npm install -g vue-cli@2.9.6
   - cd ..
 
+before_script:
+  - mdkir dist_files/
+  - mdkir build_files/
+  - yes | vue init webpack $PACKAGE_NAME
+  - rsync -a  ../webapp/ dist_files/
+  - cd build_files/
+  - npm install
+  - npm run build
+  - rsync -a dist/static/ ../dist_files/
+  - rsync -a dist/index.html ../dist_files/
+  - cd .. && ls -lsthR dist_files/
+
+cp dist/index.html ../service/opt/%s/templates/
+
 script:
   # Create the package direectories structure
   - mkdir $PACKAGE_VERSION
