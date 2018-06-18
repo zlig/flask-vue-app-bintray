@@ -50,8 +50,9 @@ before_script:
   - cd ..
   # Create the package direectories structure
   - mkdir $PACKAGE_VERSION
-  - mkdir -p $PACKAGE_VERSION/$PACKAGE_DIR/templates/static
-  - rsync -a -R webapp/dist/static/ $PACKAGE_VERSION/$PACKAGE_DIR/templates/static
+  - mkdir -p $PACKAGE_VERSION/$PACKAGE_DIR/templates/
+  - mkdir -p $PACKAGE_VERSION/$PACKAGE_DIR/static/
+  - rsync -a -R webapp/dist/static/ $PACKAGE_VERSION/$PACKAGE_DIR/static/
   - rsync -a -R webapp/dist/index.html $PACKAGE_VERSION/$PACKAGE_DIR/templates/
   - rsync -a --chown=root:www-data sources/ $PACKAGE_VERSION/
   - rsync -a -R --chown=root:www-data DEBIAN/ $PACKAGE_VERSION/
