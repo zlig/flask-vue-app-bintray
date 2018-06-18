@@ -52,11 +52,12 @@ before_script:
   - mkdir $PACKAGE_VERSION
   - mkdir -p $PACKAGE_VERSION/$PACKAGE_DIR/templates/
   - mkdir -p $PACKAGE_VERSION/$PACKAGE_DIR/static/
-  - rsync -a -R webapp/dist/static/ $PACKAGE_VERSION/$PACKAGE_DIR/static/
-  - rsync -a -R webapp/dist/index.html $PACKAGE_VERSION/$PACKAGE_DIR/templates/
+  - rsync -a -r webapp/dist/static/ $PACKAGE_VERSION/$PACKAGE_DIR/static/
+  - rsync -a -r webapp/dist/index.html $PACKAGE_VERSION/$PACKAGE_DIR/templates/
   - rsync -a --chown=root:www-data sources/ $PACKAGE_VERSION/
-  - rsync -a -R --chown=root:www-data DEBIAN/ $PACKAGE_VERSION/
-  - ls -lsthR $PACKAGE_VERSION/$PACKAGE_DIR/
+  - rsync -a -r --chown=root:www-data DEBIAN/ $PACKAGE_VERSION/
+  - ls -lsthR $PACKAGE_VERSION/
+  - tree -a $PACKAGE_VERSION/
 
 script:
   # Create the Debian package
