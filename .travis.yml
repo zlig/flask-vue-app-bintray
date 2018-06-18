@@ -9,9 +9,6 @@
 ##############################################################################################
 sudo: false
 language: node_js
-node_js:
-  - "8"
-  - "vue"
 
 env:
   global:
@@ -33,6 +30,7 @@ before_install:
 install:
   # Build Vue package
   - cd webapp
+  - npm update -g npm
   - npm install vue
   - npm install -g vue-cli
   - cd ..
