@@ -32,23 +32,19 @@ before_install:
   - npm update -g npm
 
 install:
+  # Replace version and build number with the Debian control file
+  - find . -type f -exec sed -i "s/__PACKAGE_NAME__/$PACKAGE_NAME/g" {} \;
+  - find . -type f -exec sed -i "s/__PACKAGE_DESC__/$PACKAGE_DESC/g" {} \;
+  - find . -type f -exec sed -i "s/__VERSION__/$BUILD_VERSION/g" {} \;
+  - find . -type f -exec sed -i "s/__USER__/$BINTRAY_USER/g" {} \;
+  - find . -type f -exec sed -i "s/__DATE__/$BUILD_DATE/g" {} \;
+  - find . -type f -exec sed -i "s.__PACKAGE_DIR__.$PACKAGE_DIR.g" {} \;
+  - find . -type f -exec sed -i "s/__GA_UA_ID__/$GA_UA_ID/g" {} \;
   # Create the package direectories structure
   - mkdir $PACKAGE_VERSION
   - mkdir -p $PACKAGE_VERSION/$PACKAGE_DIR/templates/static
   - rsync -a --chown=root:www-data sources/ $PACKAGE_VERSION/
   - rsync -a -R --chown=root:www-data DEBIAN/ $PACKAGE_VERSION/
-  # Replace version and build number with the Debian control file
-  - sed -i "s/__PACKAGE_NAME__/$PACKAGE_NAME/g" $PACKAGE_VERSION/DEBIAN/control
-  - sed -i "s/__PACKAGE_DESC__/$PACKAGE_DESC/g" $PACKAGE_VERSION/DEBIAN/control
-  - sed -i "s/__VERSION__/$BUILD_VERSION/g" $PACKAGE_VERSION/DEBIAN/control
-  - sed -i "s/__USER__/$BINTRAY_USER/g" $PACKAGE_VERSION/DEBIAN/control
-  - sed -i "s/__DATE__/$BUILD_DATE/g" $PACKAGE_VERSION/DEBIAN/control
-  # Replace Web App Files
-  - find $PACKAGE_VERSION -type f -exec sed -i "s/__GA_UA_ID__/$GA_UA_ID/g" {} \;
-  - find $PACKAGE_VERSION -type f -exec sed -i "s/__PACKAGE_NAME__/$PACKAGE_NAME/g" {} \;
-  - find $PACKAGE_VERSION -type f -exec sed -i "s/__PACKAGE_DESC__/$PACKAGE_DESC/g" {} \;
-  - find $PACKAGE_VERSION -type f -exec sed -i "s/__VERSION__/$BUILD_VERSION/g" {} \;
-  - find $PACKAGE_VERSION -type f -exec sed -i "s.__PACKAGE_DIR__.$PACKAGE_DIR.g" {} \;
 
 before_script:
   # Build Vue web application
