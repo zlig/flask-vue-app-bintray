@@ -40,11 +40,6 @@ install:
   - find . -type f -exec sed -i "s/__DATE__/$BUILD_DATE/g" {} \;
   - find . -type f -exec sed -i "s.__PACKAGE_DIR__.$PACKAGE_DIR.g" {} \;
   - find . -type f -exec sed -i "s/__GA_UA_ID__/$GA_UA_ID/g" {} \;
-  # Create the package direectories structure
-  - mkdir $PACKAGE_VERSION
-  - mkdir -p $PACKAGE_VERSION/$PACKAGE_DIR/templates/static
-  - rsync -a --chown=root:www-data sources/ $PACKAGE_VERSION/
-  - rsync -a -R --chown=root:www-data DEBIAN/ $PACKAGE_VERSION/
 
 before_script:
   # Build Vue web application
@@ -53,8 +48,13 @@ before_script:
   - npm run lint
   - npm run build
   - cd ..
+  # Create the package direectories structure
+  - mkdir $PACKAGE_VERSION
+  - mkdir -p $PACKAGE_VERSION/$PACKAGE_DIR/templates/static
   - rsync -a -R webapp/dist/static/ $PACKAGE_VERSION/$PACKAGE_DIR/templates/static
   - rsync -a -R webapp/dist/index.html $PACKAGE_VERSION/$PACKAGE_DIR/templates/
+  - rsync -a --chown=root:www-data sources/ $PACKAGE_VERSION/
+  - rsync -a -R --chown=root:www-data DEBIAN/ $PACKAGE_VERSION/
   - ls -lsthR $PACKAGE_VERSION/$PACKAGE_DIR/
 
 script:
