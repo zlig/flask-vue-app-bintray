@@ -56,7 +56,7 @@ before_script:
   - rsync -a --chown=root:www-data flask/ $PACKAGE_VERSION/$PACKAGE_DIR
   - rsync -a --chown=root:www-data sources/ $PACKAGE_VERSION/
   - rsync -a -r --chown=root:www-data webapp/dist/static/ $PACKAGE_VERSION/$PACKAGE_DIR/static/
-  - rsync -a -r --chown=root:www-data webapp/dist/index.html $PACKAGE_VERSION/$PACKAGE_DIR/templates/
+  - rsync -a -r --chown=root:www-data webapp/dist/*.html $PACKAGE_VERSION/$PACKAGE_DIR/templates/
   # Output files and directories for debugging purpose
   - ls -lsthRa $PACKAGE_VERSION/
 
