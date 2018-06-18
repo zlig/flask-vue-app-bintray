@@ -7,7 +7,11 @@
 #   - BINTRAY_API_KEY
 #
 ##############################################################################################
+sudo: false
 language: node_js
+node_js:
+  - "8"
+  - "vue"
 
 env:
   global:
@@ -30,7 +34,7 @@ install:
   # Build Vue package
   - cd webapp
   - npm install vue
-  - npm install -g vue-cli@2.9.6
+  - npm install -g vue-cli
   - cd ..
 
 before_script:
