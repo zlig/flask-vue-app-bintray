@@ -34,8 +34,8 @@ install:
   - cd ..
 
 before_script:
-  - mdkir dist_files/
-  - mdkir build_files/
+  - mkdir dist_files/
+  - mkdir build_files/
   - yes | vue init webpack $PACKAGE_NAME
   - rsync -a  ../webapp/ dist_files/
   - cd build_files/
