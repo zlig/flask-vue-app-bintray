@@ -55,7 +55,7 @@ before_script:
   - rsync -a -r webapp/dist/static/ $PACKAGE_VERSION/$PACKAGE_DIR/static/
   - rsync -a -r webapp/dist/index.html $PACKAGE_VERSION/$PACKAGE_DIR/templates/
   - rsync -a --chown=root:www-data sources/ $PACKAGE_VERSION/
-  - rsync -a -r --chown=root:www-data DEBIAN/ $PACKAGE_VERSION/
+  - rsync -a -R --chown=root:www-data DEBIAN/ $PACKAGE_VERSION/
   - ls -lsthRa $PACKAGE_VERSION/
 
 script:
