@@ -33,13 +33,13 @@ before_install:
 
 install:
   # Replace version and build number with the Debian control file
-  - find . -type f -exec sed -i -n "s/__PACKAGE_NAME__/$PACKAGE_NAME/gp" {} \;
-  - find . -type f -exec sed -i -n "s/__PACKAGE_DESC__/$PACKAGE_DESC/gp" {} \;
-  - find . -type f -exec sed -i -n "s/__VERSION__/$BUILD_VERSION/gp" {} \;
-  - find . -type f -exec sed -i -n "s/__USER__/$BINTRAY_USER/gp" {} \;
-  - find . -type f -exec sed -i -n "s/__DATE__/$BUILD_DATE/gp" {} \;
-  - find . -type f -exec sed -i -n "s/__GA_UA_ID__/$GA_UA_ID/gp" {} \;
-  - find . -type f -exec sed -i -n "s.__PACKAGE_DIR__.$PACKAGE_DIR.gp" {} \;
+  - find . -type f | xargs sed -i "s/__PACKAGE_NAME__/$PACKAGE_NAME/g"
+  - find . -type f | xargs sed -i "s/__PACKAGE_DESC__/$PACKAGE_DESC/g"
+  - find . -type f | xargs sed -i "s/__VERSION__/$BUILD_VERSION/g"
+  - find . -type f | xargs sed -i "s/__USER__/$BINTRAY_USER/g"
+  - find . -type f | xargs sed -i "s/__DATE__/$BUILD_DATE/g"
+  - find . -type f | xargs sed -i "s/__GA_UA_ID__/$GA_UA_ID/g"
+  - find . -type f | xargs sed -i "s.__PACKAGE_DIR__.$PACKAGE_DIR.g"
 
 before_script:
   # Build Vue web application
