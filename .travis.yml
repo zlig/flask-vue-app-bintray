@@ -45,8 +45,6 @@ before_script:
   - rsync -a dist/index.html ../dist_files/
   - cd .. && ls -lsthR dist_files/
 
-cp dist/index.html ../service/opt/%s/templates/
-
 script:
   # Create the package direectories structure
   - mkdir $PACKAGE_VERSION
