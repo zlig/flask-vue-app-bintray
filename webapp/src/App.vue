@@ -3,9 +3,9 @@
     <img src="./assets/logo.png">
     <router-view/>
     <b-nav justified tabs>
-      <b-nav-item href="/">Hello</b-nav-item>
-      <b-nav-item href="/bye">Bye</b-nav-item>
-      <b-nav-item href="/404">Not Found</b-nav-item>
+      <b-nav-item v-bind:to="'/'">Hello</b-nav-item>
+      <b-nav-item v-bind:to="'bye'">Bye</b-nav-item>
+      <b-nav-item v-bind:to="'404'">Not Found</b-nav-item>
     </b-nav>
   </div>
 </template>
