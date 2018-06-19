@@ -3,15 +3,14 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-import Vue from 'vue'
 
 import BootstrapVue from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 Vue.use(BootstrapVue)
 
-import { Nav } from 'bootstrap-vue/es/components';
-Vue.use(Nav);
+import { Nav } from 'bootstrap-vue/es/components'
+Vue.use(Nav)
 
 Vue.config.productionTip = false
 
