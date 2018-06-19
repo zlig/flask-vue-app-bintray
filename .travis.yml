@@ -12,6 +12,10 @@ language: node_js
 node_js:
   - "6"
 
+cache:
+  directories:
+    - $HOME/.npm
+
 env:
   global:
   - PACKAGE_NAME=flask-vue-app-bintray
