@@ -3,9 +3,9 @@
     <img src="./assets/logo.png">
     <router-view/>
     <b-nav justified tabs>
-      <b-nav-item active>Hello</b-nav-item>
-      <b-nav-item>Bye</b-nav-item>
-      <b-nav-item>Not Found</b-nav-item>
+      <b-nav-item href="/">Hello</b-nav-item>
+      <b-nav-item href="/bye">Bye</b-nav-item>
+      <b-nav-item href="/404">Not Found</b-nav-item>
     </b-nav>
   </div>
 </template>
