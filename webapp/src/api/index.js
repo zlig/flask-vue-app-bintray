@@ -1,9 +1,11 @@
 import axios from 'axios'
 
-export function fetchHi () {
-  return axios.get('/hi')
+export function fetchHi() {
+  var data = axios.get('/hi').then(function(response) { return response.data })
+  return data;
 }
 
 export function fetchHiName (name) {
-  return axios.get('/hi/' + name)
+  var data = axios.get('/hi/' + name).then(function(response) { return response.data })
+  return data
 }

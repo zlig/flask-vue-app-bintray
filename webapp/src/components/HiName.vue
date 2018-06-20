@@ -1,7 +1,7 @@
 <template>
   <div class="hi">
     <h1>{{ msg }}</h1>
-    <h2>{{ greetings }}</h2>
+    <h2 v-bind="greetings">{{ greetings }}</h2>
     <b-form @submit="onSubmit" @reset="onReset" v-if="show">
       <b-form-group id="inputGroup"
                     label="Your Name:"
@@ -24,27 +24,27 @@ import { fetchHi, fetchHiName } from '@/api'
 
 export default {
   name: 'HiName',
-  data () {
+  data() {
     return {
       msg: 'Hi',
       greetings: '',
-      form: {
+      form:
         name: ''
       },
       show: true
     }
   },
   methods: {
-    getHi () {
+    getHi() {
       var response = fetchHi()
       this.greetings = response.data
     },
-    onSubmit (evt) {
+    onSubmit(evt) {
       evt.preventDefault()
       var response = fetchHiName(this.form.name)
       this.greetings = response.data
     },
-    onReset (evt) {
+    onReset(evt) {
       evt.preventDefault()
       /* Reset our form values */
       this.form.name = ''
