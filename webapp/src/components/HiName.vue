@@ -12,7 +12,7 @@ export default {
   name: 'HiName',
   data () {
     return {
-      msg: 'Hi'
+      msg: 'Hi',
       greetings: ''
     }
   },

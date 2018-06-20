@@ -1,5 +1,5 @@
 import axios from 'axios'
 
-export function fetchHello() {  
+export function fetchHello() {
   return axios.get('/hello')
 }
