@@ -13,22 +13,22 @@ export default new Router({
     {
       path: '/',
       name: 'HelloWorld',
-      component: load('HelloWorld')
+      component: HelloWorld
     },
     {
       path: '/hi',
       name: 'HiName',
-      component: load('HiName')
+      component: HiName
     },
     {
       path: '/bye',
       name: 'GoobBye',
-      component: load('GoodBye')
+      component: GoodBye
     },
     {
       path: '/404',
       name: '404',
-      component: load('NotFound')
+      component: NotFound
     },
     {
       path: '*',
