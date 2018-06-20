@@ -7,7 +7,19 @@
 [![License](https://img.shields.io/badge/License-LGPL%202.1-blue.svg)](https://opensource.org/licenses/LGPL-2.1)
 
 ## Description
+
 Build a Python Flask web application combined with Vue.js in a Debian .deb package using Travis and upload to Bintray 
+
+
+## Development
+
+Use `local-dev.sh` script to build and run locally the Flask server with API and the Vue web application with DevTools enabled for [Firefox](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/) and [Chrome](https://chrome.google.com/webstore/detail/vuejs-devtools/):
+
+```
+$ ./local-dev.sh
+
+```
+Then access the application in the browser by opening [http://0.0.0.0:5000/#/](http://0.0.0.0:5000/).
 
 
 ## Usage
