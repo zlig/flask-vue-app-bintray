@@ -28,7 +28,7 @@ export default {
     return {
       msg: 'Hi',
       greetings: '',
-      form:
+      form: {
         name: ''
       },
       show: true
