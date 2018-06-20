@@ -14,13 +14,13 @@ case "$1" in
 		if [ "$IS_UPGRADE" = "true" ]; then
 			echo -n "Restarting service..."
 			systemctl daemon-reload
-			systemctl restart flask-app-bintray || true
+			systemctl restart __PACKAGE_NAME__ || true
 			echo " OK"
 		else
 			echo -n "Starting service..."
 			systemctl daemon-reload
-			systemctl enable flask-app-bintray || true
-			systemctl start flask-app-bintray || true
+			systemctl enable __PACKAGE_NAME__ || true
+			systemctl start __PACKAGE_NAME__ || true
 			echo " OK"
 		fi
 		;;
