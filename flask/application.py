@@ -9,6 +9,7 @@ app.debug=True
 def index():
     return render_template('index.html', name=name)
 
+@app.route("/hi")
 @app.route("/hi/<name>")
 def hi(name=None):
     if name:
@@ -18,7 +19,7 @@ def hi(name=None):
 
 @app.errorhandler(404)
 def page_not_found(e):
-    return render_template('404.html'), 404
+    return jsonify({"data": "not found", "error": "resource not found"}), 404
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0')
