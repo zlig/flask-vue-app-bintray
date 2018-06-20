@@ -32,10 +32,6 @@ before_install:
   - export BUILD_DATE=$(date "+%Y%m%d")
   - export PACKAGE_VERSION=$PACKAGE_NAME-$BUILD_VERSION
   - export PACKAGE_VERSION_DEB=$PACKAGE_VERSION.deb
-  # NPM packages
-  - npm update -g npm
-
-install:
   # Replace version and build number with the Debian control file
   - find . -type f | xargs sed -i "s/__PACKAGE_NAME__/$PACKAGE_NAME/g"
   - find . -type f | xargs sed -i "s/__PACKAGE_DESC__/$PACKAGE_DESC/g"
@@ -45,24 +41,29 @@ install:
   - find . -type f | xargs sed -i "s/__GA_UA_ID__/$GA_UA_ID/g"
   - find . -type f | xargs sed -i "s.__PACKAGE_DIR__.$PACKAGE_DIR.g"
 
-before_script:
+install:
+  # NPM packages
+  - npm update -g npm
   # Build Vue web application
-  - cd webapp
+  - cd sources/webapp/
   - npm install
   - npm run lint
   - npm run build
-  - cd ..
-  # Create the package direectories structure
+  - cd ../..
+
+before_script:
+  # Create the package directories structure
   - mkdir $PACKAGE_VERSION
   - mkdir -p $PACKAGE_VERSION/$PACKAGE_DIR/templates/
   - mkdir -p $PACKAGE_VERSION/$PACKAGE_DIR/static/
-  - rsync -a -R --chown=root:www-data DEBIAN/ $PACKAGE_VERSION/
-  - rsync -a --chown=root:www-data flask/ $PACKAGE_VERSION/$PACKAGE_DIR
-  - rsync -a --chown=root:www-data sources/ $PACKAGE_VERSION/
-  - rsync -a -r --chown=root:www-data webapp/dist/static/ $PACKAGE_VERSION/$PACKAGE_DIR/static/
-  - rsync -a -r --chown=root:www-data webapp/dist/*.html $PACKAGE_VERSION/$PACKAGE_DIR/templates/
+  # Layout the files in the directories structure
+  - rsync -a -R --chown=root:www-data packages/DEBIAN/ $PACKAGE_VERSION/
+  - rsync -a --chown=root:www-data sources/files/ $PACKAGE_VERSION/
+  - rsync -a --chown=root:www-data sources/webapp/dist/*.html $PACKAGE_VERSION/$PACKAGE_DIR/templates/
+  - rsync -a -r --chown=root:www-data sources/webapp/dist/static/ $PACKAGE_VERSION/$PACKAGE_DIR/static/
+  - rsync -a --chown=root:www-data sources/server/ $PACKAGE_VERSION/$PACKAGE_DIR
   # Output files and directories for debugging purpose
-  - ls -lsthRa $PACKAGE_VERSION/
+  - ls -lsthRA $PACKAGE_VERSION/
 
 script:
   # Create the Debian package
