@@ -1,17 +1,20 @@
 #!/usr/bin/env python
-from flask import Flask, render_template
+from flask import Flask, render_template, jsonify
 
 app = Flask(__name__)
 app.debug=True
 
 @app.route("/")
+@app.route("/hello")
 def index():
     return render_template('index.html', name=name)
 
 @app.route("/hi/<name>")
-@app.route("/hello/<name>")
 def hi(name=None):
-    return {"message": "hello"}
+    if name:
+        return jsonify({"data": "hi, %s" % name}), 200
+    else:
+        return jsonify({"data": "hi"}), 200
 
 @app.errorhandler(404)
 def page_not_found(e):

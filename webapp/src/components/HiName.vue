@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import { fetchHello } from '@/api'
+import { fetchHi } from '@/api'
 
 export default {
   name: 'HiName',
@@ -18,7 +18,7 @@ export default {
   },
   methods: {
     getHi() {
-      var response = fetchHello()
+      var response = fetchHi()
       return { greetings: response.data }
     }
   },
