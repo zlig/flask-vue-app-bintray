@@ -1,16 +1,12 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-/*import HelloWorld from '@/components/HelloWorld'
+import HelloWorld from '@/components/HelloWorld'
 import HiName from '@/components/HiName'
 import GoodBye from '@/components/GoodBye'
-import NotFound from '@/components/NotFound'*/
+import NotFound from '@/components/NotFound'
 
 Vue.use(Router)
-
-function load(view) {
-  return () => import('@/components/${view}.vue')
-}
 
 export default new Router({
   routes: [
