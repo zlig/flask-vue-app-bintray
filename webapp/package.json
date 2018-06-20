@@ -1,7 +1,7 @@
 {
   "name": "__PACKAGE_NAME__",
   "version": "__VERSION__",
-  "description": "__DESK__",
+  "description": "__DESC__",
   "author": "__USER__",
   "private": true,
   "scripts": {

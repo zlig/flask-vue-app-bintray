@@ -17,13 +17,14 @@ export default {
     }
   },
   methods: {
-    getHi().then((response) => {
-        return { greetings: response.data })
-    })
+    getHi() {
+      var response = fetchHello()
+      return { greetings: response.data }
+    }
   },
   created() {
-    this.getHi();
-  },  
+    this.getHi()
+  } 
 }
 </script>
 
