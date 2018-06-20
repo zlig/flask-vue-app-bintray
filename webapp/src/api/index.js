@@ -5,5 +5,5 @@ export function fetchHi () {
 }
 
 export function fetchHiName (name) {
-  return axios.get('/hi'+name)
+  return axios.get('/hi/' + name)
 }
