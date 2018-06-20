@@ -52,7 +52,7 @@ export default {
       this.show = false;
       this.$nextTick(() => { this.show = true });
     }
-  }
+  },
   created() {
     this.getHi()
   }
