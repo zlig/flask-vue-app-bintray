@@ -29,7 +29,7 @@ export default {
       msg: 'Hi',
       greetings: '',
       form: {
-        name: '',
+        name: ''
       },
       show: true
     }
@@ -40,17 +40,17 @@ export default {
       this.greetings = response.data
     },
     onSubmit (evt) {
-      evt.preventDefault();
+      evt.preventDefault()
       var response = fetchHiName(this.form.name)
       this.greetings = response.data
     },
     onReset (evt) {
-      evt.preventDefault();
+      evt.preventDefault()
       /* Reset our form values */
-      this.form.name = '';
+      this.form.name = ''
       /* Trick to reset/clear native browser form validation state */
-      this.show = false;
-      this.$nextTick(() => { this.show = true });
+      this.show = false
+      this.$nextTick(() => { this.show = true })
     }
   },
   created() {
