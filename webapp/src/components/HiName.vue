@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import { fetchHi } from '@/api'
+import { fetchHi, fetchHiName } from '@/api'
 
 export default {
   name: 'HiName',
