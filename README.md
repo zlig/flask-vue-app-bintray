@@ -17,9 +17,8 @@ Use `local-dev.sh` script to build and run locally the Flask server with API and
 
 ```
 $ ./local-dev.sh
-
 ```
-Then access the application in the browser by opening [http://0.0.0.0:5000/#/](http://0.0.0.0:5000/).
+Then, access the application locally using a browser at the address: [http://0.0.0.0:5000/](http://0.0.0.0:5000/).
 
 
 ## Usage
