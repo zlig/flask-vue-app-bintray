@@ -1,7 +1,7 @@
 <template>
   <div class="hi">
     <h1>{{ msg }}</h1>
-    <h2 v-bind="greetings">{{ greetings }}</h2>
+    <h2>{{ greetings }}</h2>
     <b-form @submit="onSubmit" @reset="onReset" v-if="show">
       <b-form-group id="inputGroup"
                     label="Your Name:"
@@ -27,7 +27,7 @@ export default {
   data() {
     return {
       msg: 'Hi',
-      greetings: '',
+      greetings: 'there',
       form: {
         name: ''
       },
@@ -36,18 +36,17 @@ export default {
   },
   methods: {
     getHi() {
-      var response = fetchHi()
-      this.greetings = response.data
+      fetchHi().then(response => { this.greetings = response.data })
     },
     onSubmit(evt) {
       evt.preventDefault()
-      var response = fetchHiName(this.form.name)
-      this.greetings = response.data
+      fetchHiName(this.form.name).then(response => { this.greetings = response.data })
     },
     onReset(evt) {
       evt.preventDefault()
       /* Reset our form values */
       this.form.name = ''
+      this.greetings = ''
       /* Trick to reset/clear native browser form validation state */
       this.show = false
       this.$nextTick(() => { this.show = true })
