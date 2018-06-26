@@ -7,7 +7,15 @@
 #   - BINTRAY_API_KEY
 #
 ##############################################################################################
+os: linux
+dist: trusty
 sudo: false
+
+addons:
+  apt:
+    packages:
+    - fakeroot
+
 language: node_js
 node_js:
   - "6"
