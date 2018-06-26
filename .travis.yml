@@ -68,7 +68,7 @@ before_script:
 
 script:
   # Create the Debian package
-  - dpkg-deb --build $PACKAGE_VERSION
+  - fakeroot dpkg-deb --build $PACKAGE_VERSION
 
 after_success:
   # Stores hashes of created package to ensure upload successful
